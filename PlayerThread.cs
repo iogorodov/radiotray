@@ -81,6 +81,7 @@ namespace radiotray
                             Exception e = player.Play(operation.Uri);
                             if (e == null)
                             {
+                                IsPlaying = true;
                                 if (Playing != null)
                                     Playing(this, new PlaybackUriEventArgs(operation.Uri));
                             }
@@ -106,7 +107,6 @@ namespace radiotray
 
         public void Play(string uri)
         {
-            IsPlaying = true;
             if (Loading != null)
                 Loading(this, new PlaybackUriEventArgs(uri));
             operations.Push(new PlayerOperaion(PlayerOperaion.PlayerAction.PLAY, uri));
